@@ -26,6 +26,11 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'io.projectreactor:reactor-test'
+	implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.12.5'
+	implementation group: 'org.springframework.kafka', name: 'spring-kafka', version: '2.7.7'
+
+
+
 }
 
 test {

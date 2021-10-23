@@ -11,14 +11,9 @@ public class KitchenSenderService {
 
     private final KafkaTemplate<String,String> kafkaTemplate;
 
-//    public KitchenSenderService(KafkaTemplate<String,String>template) {
-//        this.kafkaTemplate = template;
-//    }
-
     @Scheduled(fixedRate = 1000)
     public void send() {
-        System.out.println("Hello world");
-        kafkaTemplate.send("test2", "Hello");
-
+//        System.out.println("Hello world");
+//        kafkaTemplate.send("test2", "Hello");
     }
 }

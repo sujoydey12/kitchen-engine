@@ -28,6 +28,9 @@ dependencies {
 	testImplementation 'io.projectreactor:reactor-test'
 	implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.12.5'
 	implementation group: 'org.springframework.kafka', name: 'spring-kafka', version: '2.7.7'
+	// https://mvnrepository.com/artifact/io.micrometer/micrometer-registry-prometheus
+	implementation group: 'io.micrometer', name: 'micrometer-registry-prometheus', version: '1.7.5'
+
 
 
 

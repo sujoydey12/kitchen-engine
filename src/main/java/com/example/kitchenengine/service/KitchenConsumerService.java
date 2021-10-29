@@ -1,17 +1,32 @@
 package com.example.kitchenengine.service;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Component
+@Slf4j
 public class KitchenConsumerService {
 
 
-   // @KafkaListener(topics = "${topic_name}",groupId = "kafka-sandbox")
-    public void listen(String message) {
-        synchronized (message){
-      //      System.out.println("Consume message -> " +  message);
+    private List<String>messageList = new ArrayList<>();
+    private static final String TOPIC_NAME="test3";
+
+    @KafkaListener(topics = "test3", groupId = "kafka-sandbox")
+    public String listen(String message) {
+        synchronized (message) {
+            messageList.add(message);
+            log.info(message);
+            return message;
         }
     }
 
+    public List<String> getMessage() {
+        return messageList;
+
+    }
 }

@@ -2,19 +2,21 @@ package com.example.kitchenengine.controllers;
 
 
 import com.example.kitchenengine.domain.Table;
+import com.example.kitchenengine.service.KitchenConsumerService;
 import com.example.kitchenengine.service.OrderService;
-import io.micrometer.core.annotation.Timed;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
+@Slf4j
 public class OrderController {
 
     private final OrderService orderService;
+    private final KitchenConsumerService kitchenConsumerService;
 
 
     @PostMapping("sendOrder")
@@ -22,9 +24,9 @@ public class OrderController {
         orderService.sendOrderConfirm(table);
     }
 
-    @GetMapping("/test")
-    @Timed("1")
-    public String getTest() {
-        return "test";
+    @GetMapping("/retrieveAllMessages")
+    public List<String> getMessage() {
+        return kitchenConsumerService.getMessage();
     }
+
 }

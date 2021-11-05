@@ -1,7 +1,7 @@
 package com.example.kitchenengine.service;
 
 
-import com.example.kitchenengine.domain.Table;
+import com.example.kitchenengine.domain.CustomerTable;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
@@ -14,11 +14,12 @@ public class OrderService {
 
     private final KafkaTemplate<String,String>kafkaTemplate;
     private final ObjectMapper objectMapper;
+    private final String TOPIC = "test2";
 
     @SneakyThrows
-    public void sendOrderConfirm(Table table){
-        String json = objectMapper.writeValueAsString(table);
-        kafkaTemplate.send("test2",json);
+    public void sendOrderConfirm(CustomerTable table){
+        String payload = objectMapper.writeValueAsString(table);
+        kafkaTemplate.send(TOPIC,payload);
     }
 
 }

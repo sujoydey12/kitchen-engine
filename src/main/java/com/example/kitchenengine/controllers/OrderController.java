@@ -1,7 +1,7 @@
 package com.example.kitchenengine.controllers;
 
 
-import com.example.kitchenengine.domain.Table;
+import com.example.kitchenengine.domain.CustomerTable;
 import com.example.kitchenengine.service.KitchenConsumerService;
 import com.example.kitchenengine.service.OrderService;
 import lombok.RequiredArgsConstructor;
@@ -20,7 +20,7 @@ public class OrderController {
 
 
     @PostMapping("sendOrder")
-    public void sendOrder(@RequestBody Table table) {
+    public void sendOrder(@RequestBody CustomerTable table) {
         orderService.sendOrderConfirm(table);
     }
 

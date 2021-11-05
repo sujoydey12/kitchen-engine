@@ -13,11 +13,13 @@ import java.util.List;
 public class KitchenConsumerService {
 
 
+    public static final String KAFKA_SANDBOX = "kafka-sandbox";
     private List<String>messageList = new ArrayList<>();
     private static final String TOPIC_NAME="test3";
 
-    @KafkaListener(topics = "test3", groupId = "kafka-sandbox")
-    public String listen(String message) {
+
+    @KafkaListener(topics = TOPIC_NAME, groupId = KAFKA_SANDBOX)
+    public String getConsumedMessage(String message) {
         synchronized (message) {
             messageList.add(message);
             log.info(message);

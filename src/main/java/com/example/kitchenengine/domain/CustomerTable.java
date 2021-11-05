@@ -2,13 +2,15 @@ package com.example.kitchenengine.domain;
 
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
 @AllArgsConstructor
 @Data
 @RequiredArgsConstructor
-public class Table {
+@Builder
+public class CustomerTable {
 
     private int id;
     private int tableNo;

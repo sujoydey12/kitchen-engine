@@ -6,6 +6,7 @@ import com.example.kitchenengine.service.KitchenConsumerService;
 import com.example.kitchenengine.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,6 +21,7 @@ public class OrderController {
 
 
     @PostMapping("sendOrder")
+    @ResponseStatus(HttpStatus.CREATED)
     public void sendOrder(@RequestBody CustomerTable table) {
         orderService.sendOrderConfirm(table);
     }

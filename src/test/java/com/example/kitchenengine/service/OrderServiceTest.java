@@ -25,7 +25,7 @@ public class OrderServiceTest {
     OrderService orderService;
 
     @Test
-    public void testOrder() throws JsonProcessingException {
+    public void testOrderWithReadyToOrder() throws JsonProcessingException {
 
         orderService
                 .sendOrderConfirm(CustomerTable.builder().id(1)
@@ -36,9 +36,34 @@ public class OrderServiceTest {
                 .status(Status.READY_TO_ORDER).build());
 
         verify(kafkaTemplate).send(TOPIC,payload);
-
-
-
-
     }
+
+    @Test
+    public void testOrderWithReadyForBill() throws JsonProcessingException {
+
+        orderService
+                .sendOrderConfirm(CustomerTable.builder().id(1)
+                        .tableNo(2)
+                        .status(Status.READY_FOR_BILL).build());
+        String payload = objectMapper.writeValueAsString(CustomerTable.builder().id(1)
+                .tableNo(2)
+                .status(Status.READY_FOR_BILL).build());
+
+        verify(kafkaTemplate).send(TOPIC,payload);
+    }
+
+    @Test
+    public void testOrderADrink() throws JsonProcessingException {
+
+        orderService
+                .sendOrderConfirm(CustomerTable.builder().id(1)
+                        .tableNo(2)
+                        .status(Status.DRINK_PLEASE).build());
+        String payload = objectMapper.writeValueAsString(CustomerTable.builder().id(1)
+                .tableNo(2)
+                .status(Status.DRINK_PLEASE).build());
+
+        verify(kafkaTemplate).send(TOPIC,payload);
+    }
+
 }
